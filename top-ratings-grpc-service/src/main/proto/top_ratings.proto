@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package com.example.topratings;
+
+option java_multiple_files = true;
+option java_package = "com.example.topratings.grpc";
+option java_outer_classname = "TopRatingsProto";
+
+service TopRatingsService {
+  rpc GetTopRatedMovies (TopRatedMoviesRequest) returns (TopRatedMoviesResponse);
+}
+
+message TopRatedMoviesRequest {
+  int32 limit = 1;  // Number of top-rated movies to return
+}
+
+message MovieRating {
+  string movie_id = 1;
+  double average_rating = 2;
+}
+
+message TopRatedMoviesResponse {
+  repeated MovieRating movies = 1;
+}
